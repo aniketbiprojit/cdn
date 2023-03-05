@@ -18,3 +18,5 @@ cd ../..
 
 
 echo "Exiting"
+
+npm run build
