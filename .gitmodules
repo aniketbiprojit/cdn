@@ -1,0 +1,3 @@
+[submodule "public/cdn-source"]
+	path = public/cdn-source
+	url = https://github.com/aniketbiprojit/cdn-source.git
