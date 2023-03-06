@@ -4,9 +4,24 @@ import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import { trpc } from "../utils/trpc";
+import { Folder } from "../server/trpc/router/example";
+import { useEffect, useState } from "react";
 
 const Home: NextPage = () => {
-  const hello = trpc.example.hello.useQuery();
+  const run = async () => {
+    const res = await fetch("/cdn-source/manifest.json");
+    const data: Folder = await res.json();
+    setManifest(data);
+    return data;
+  };
+
+  const [manifest, setManifest] = useState<Folder>();
+
+  useEffect(() => {
+    if (manifest === undefined) {
+      run();
+    }
+  }, []);
 
   return (
     <>
@@ -14,7 +29,7 @@ const Home: NextPage = () => {
         <title>CDN View</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <pre>{JSON.stringify(hello.data, undefined, 4)}</pre>
+      <pre>{JSON.stringify(manifest ?? {}, undefined, 4)}</pre>
     </>
   );
 };
