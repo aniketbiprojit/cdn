@@ -1,7 +1,9 @@
 ## Free-Form CDN
 
 The submodule get populated into public/cdn-source.
+
 Submodule = https://github.com/aniketbiprojit/cdn-source
+
 The CI run on submodule that generates a manifest.json on every run.
 
 A VCS based CDN system.
